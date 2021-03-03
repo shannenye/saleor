@@ -3,7 +3,7 @@ from urllib.parse import urlencode
 import pytest
 from django.core.exceptions import ValidationError
 
-from ..utils.url import prepare_url, validate_url
+from ..utils.url import APPURLValidator, prepare_url
 
 
 def test_prepare_url():
@@ -14,13 +14,13 @@ def test_prepare_url():
 
 
 def test_validate_url():
+    url_validator = APPURLValidator()
     url = "http://otherapp:3000"
-    result = validate_url(url)
-
-    assert result == "otherapp"
+    assert url_validator(url) is None
 
 
 def test_validate_invalid_url():
+    url_validator = APPURLValidator()
     url = "otherapp:3000"
     with pytest.raises(ValidationError):
-        validate_url(url)
+        url_validator(url)

@@ -1,12 +1,12 @@
-from django.core import validators
 from django.db import models
 
 from ..app.models import App
+from ..core.utils.url import APPURLValidator
 
 
 class WebhookURLField(models.URLField):
     default_validators = [
-        validators.URLValidator(schemes=["http", "https", "awssqs", "gcpubsub"])
+        APPURLValidator(schemes=["http", "https", "awssqs", "gcpubsub"])
     ]
 
 
