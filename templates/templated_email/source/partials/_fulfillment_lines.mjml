@@ -1,47 +1,103 @@
 <mj-raw>
-  {% load display_translated_order_line_name from order_lines %}
+   {% load price from taxed_prices %}
+   {% load voucher %}
+
+   {% if physical_lines %}
+      {% for line in physical_lines %}
 </mj-raw>
-<mj-section>
-  <mj-column>
-    <mj-text>
-      {% if physical_lines %}
-        <table style="width:100%">
-          <thead class="table-header-row">
-            <tr>
-              <th style="text-align: left;">{% trans "Item" context "Ordered item name" %}</th>
-              <th style="text-align: right;">{% trans "Quantity" context "Quantity ordered of a product" %}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for line in physical_lines %}
-              <tr class="table-item-row">
-                <td>{% display_translated_order_line_name line.order_line %}</td>
-                <td style="text-align: right;">{{ line.quantity }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      {% endif %}
-      {% if digital_lines %}
-        <table style="width:100%">
-          <thead class="table-header-row">
-            <tr>
-              <th style="text-align: left;">{% trans "Item" context "Ordered item name" %}</th>
-              <th style="text-align: right;">{% trans "Download Link" context "Ordered item download links" %}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for line in digital_lines %}
-              <tr class="table-item-row">
-                <td>{% display_translated_order_line_name line.order_line %}</td>
-                <td style="text-align: right;">
-                  <a href={{ line.order_line.digital_content_url.get_absolute_url }}>Link</a>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      {% endif %}
-    </mj-text>
-  </mj-column>
-</mj-section>
+      <mj-section padding="0">
+         <mj-column padding="0">
+            <mj-table>
+               <tr>
+                  <td class="" width="600" align="right" valign="top">
+                     <table class="mobile-full-width" width="540" border="0" cellspacing="0" cellpadding="0" bgcolor="">
+                        <tr>
+                           <td class="mobile-full-width mobile-display-block mobile-text-left" width="100" align="left" valign="top">
+                              <a style="text-decoration:none;" target="_blank" href="{{ line.order_line.variant.get_first_image.image.url }}">
+                                 <img class="" src="{{ line.order_line.variant.get_first_image.image.url }}" width="100" height="100" alt="la aurora" border="0" style="width: 100px; height:100px; display: block;">
+                              </a>
+                           </td>
+                           <td class="mobile-full-width mobile-display-block mobile-text-left" width="300" align="left" valign="top">
+                              <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 16px; line-height: 22px; color: #36332B;">
+                                 {% if line.order_line.translated_product_name %}
+                                    {{ line.order_line.translated_product_name }}
+                                 {% else %}
+                                    {{ line.order_line.product_name }}
+                                 {% endif %}
+                              </span>
+                              <br>
+                              <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 16px; line-height: 35px; color: #767676;">
+                                 {% if line.order_line.translated_variant_name %}
+                                    {{ line.order_line.translated_variant_name }}
+                                 {% elif line.order_line.variant_name %}
+                                    {{ line.order_line.variant_name }}
+                                 {% endif %}
+                              </span>
+                           </td>
+                        </tr>
+                     </table>
+                  </td>
+               </tr>
+            </mj-table>
+         </mj-column>
+      </mj-section>
+
+      <mj-section padding="0">
+         <mj-column padding="0">
+            <mj-divider width="100%" border-width="1px" border-style="solid" border-color="#bababa" />
+         </mj-column>
+      </mj-section>
+<mj-raw>
+   {% endfor %}
+{% endif %}
+</mj-raw>
+
+<mj-raw>
+{% if digital_lines %}
+   {% for line in digital_lines %}
+</mj-raw>
+      <mj-section padding="0">
+         <mj-column padding="0">
+            <mj-table>
+               <tr>
+                  <td class="" width="600" align="right" valign="top">
+                     <table class="mobile-full-width" width="540" border="0" cellspacing="0" cellpadding="0" bgcolor="">
+                        <tr>
+                           <td class="mobile-full-width mobile-display-block mobile-text-left" width="100" align="left" valign="top">
+                              <a style="text-decoration:none;" target="_blank" href="{{ line.order_line.variant.get_first_image.image.url }}">
+                                 <img class="" src="{{ line.order_line.variant.get_first_image.image.url }}" width="100" height="100" alt="la aurora" border="0" style="width: 100px; height:100px; display: block;">
+                              </a>
+                           </td>
+                           <td class="mobile-full-width mobile-display-block mobile-text-left" width="300" align="left" valign="top">
+                              <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 16px; line-height: 22px; color: #36332B;">
+                                 {% if line.order_line.translated_product_name %}
+                                    {{ line.order_line.translated_product_name }}
+                                 {% else %}
+                                    {{ line.order_line.product_name }}
+                                 {% endif %}
+                              </span>
+                              <br>
+                              <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 16px; line-height: 35px; color: #767676;">
+                                 {% if line.order_line.translated_variant_name %}
+                                    {{ line.order_line.translated_variant_name }}
+                                 {% elif line.order_line.variant_name %}
+                                    {{ line.order_line.variant_name }}
+                                 {% endif %}
+                              </span>
+                           </td>
+                        </tr>
+                     </table>
+                  </td>
+               </tr>
+            </mj-table>
+         </mj-column>
+      </mj-section>
+      <mj-section padding="0">
+         <mj-column padding="0">
+            <mj-divider width="100%" border-width="1px" border-style="solid" border-color="#bababa" />
+         </mj-column>
+      </mj-section>
+<mj-raw>
+   {% endfor %}
+{% endif %}
+</mj-raw>

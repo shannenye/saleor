@@ -1,43 +1,137 @@
 <mjml>
-  <mj-head>
-    <mj-include path="./shared/styles.mjml" />
-  </mj-head>
-  <mj-body>
-    <mj-raw>
-      {% load i18n %}
-    </mj-raw>
-    <mj-include path="./shared/header.mjml" />
-    <mj-section>
-      <mj-column>
-        <mj-text font-size="16px">
-          {% trans "Hi!" context "Standard e-mail greeting" %}
-        </mj-text>
-        <mj-text>
-          {% blocktrans trimmed context "Fulfillment confirmation email text" %}
-            Thank you for your order. Below is the list of fulfilled products.
-          {% endblocktrans %}
-          {% if fulfillment.tracking_number %}
-            {% if fulfillment.is_tracking_number_url %}
-              {% blocktrans trimmed with tracking_number=fulfillment.tracking_number context "Fulfillment confirmation email text" %}
-                You can track your shipment with <a href="{{ tracking_number }}">{{ tracking_number }}</a> link.
-              {% endblocktrans %}
-            {% else %}
-              {% blocktrans trimmed with tracking_number=fulfillment.tracking_number context "Fulfillment confirmation email text" %}
-                You can track your shipment with {{ tracking_number }} code.
-              {% endblocktrans %}
-            {% endif %}
-          {% endif %}
-        </mj-text>
-        <mj-text>
-          {% if digital_lines %}
-            {% blocktrans trimmed context "Fulfillment digital products email text" %}
-              You can download your digital products by clicking in download link(s).
-            {% endblocktrans %}
-          {% endif %}
-        </mj-text>
-      </mj-column>
-    </mj-section>
-    <mj-include path="./partials/_fulfillment_lines.mjml" />
-    <mj-include path="./shared/footer.mjml" />
-  </mj-body>
+   <mj-head>
+      <mj-include path="./shared/styles.mjml" />
+      <mj-preview>Track your package.</mj-preview>
+   </mj-head>
+   <mj-body>
+      <mj-raw>
+         {% load i18n %}
+         {% load i18n_address_tags %}
+      </mj-raw>
+
+      <mj-include path="./shared/header.mjml" />
+
+      <mj-section padding="0" background-color="#ffffff">
+         <mj-column padding="0">
+            <mj-text align="center" padding="0 10px" font-family="'kaneda-gothic', 'copperplate', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="44px" color="#36332B" text-transform="uppercase">
+               <h1 style="font-family: 'kaneda-gothic', 'copperplate', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal; font-size: 44px; text-align: center; color: #36332B; text-transform: uppercase;">
+                  Your Items Have Shipped
+               </h1>
+            </mj-text>
+
+            <mj-text align="center" padding="0 10px" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="16px" line-height="24px" color="#36332B">
+               Items from your order have shipped. To track your delivery or check the status of any pending items, follow the link below.
+            </mj-text>
+
+            <mj-spacer height="20px" padding="0" />
+
+         </mj-column>
+      </mj-section>
+
+      <mj-include path="./shared/small-divider.mjml" />
+
+      <mj-section padding="0" background-color="#ffffff">
+         <mj-column padding="0">
+            <mj-spacer height="20px" padding="0" />
+            <mj-text align="center" padding="0 10px">
+               <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal;"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal;">Order Date</b>: {{ order.created }}</span> <span class="mobile-display-none" style="width:20px; height:15px; display: inline-block;">&nbsp;</span>
+               <br class="mobile-display-block" style="display: none;">
+
+               <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal;"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal;">Order No</b>: {{ order.pk }}</span>
+            </mj-text>
+            <mj-spacer height="20px" padding="0" />
+         </mj-column>
+      </mj-section>
+
+      <mj-section padding="0" background-color="#ffffff">
+         <mj-column padding="0">
+            <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="{{ order_details_url }}">
+               Check Order Status
+            </mj-button>
+         </mj-column>
+      </mj-section>
+
+      <mj-section padding="0" background-color="#ffffff">
+         <mj-column padding="0">
+            <mj-spacer height="50px" padding="0" />
+            <mj-text align="center" padding="0 10px" font-family="'kaneda-gothic', 'copperplate', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="30px" color="#36332B" text-transform="uppercase">
+               Shipment Details
+            </mj-text>
+            <mj-spacer height="36px" padding="0" />
+         </mj-column>
+      </mj-section>
+
+      <mj-include path="./partials/_fulfillment_lines.mjml" />
+
+      <mj-section padding="0">
+         <mj-column padding="0 16px 0 0">
+            <mj-text font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="16px" line-height="22px" color="#36332B">
+               <b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 12px; line-height: 14px; color: #36332B; text-transform: uppercase;">
+                  Shipping Address
+               </b>
+               <br>
+               <br>
+               {% if order.shipping_address %}
+                  {{ order.shipping_address.full_name }}
+                  <br>
+                  {% if order.shipping_address.company_name %}
+                     {{ order.shipping_address.company_name }}
+                     <br>
+                  {% endif %}
+                  {{ order.shipping_address.street_address_1 }}
+                  <br>
+                  {% if order.shipping_address.street_address_2 %}
+                     {{ order.shipping_address.street_address_2 }}
+                     <br>
+                  {% endif %}
+                  {{ order.shipping_address.city }}, {{ order.shipping_address.country_area }} {{ order.shipping_address.postal_code }}
+               {% else %}
+                  {% trans "No shipping address required" context "Order confirmation e-mail text" %}
+               {% endif %}
+            </mj-text>
+         </mj-column>
+         <mj-column padding="0 16px 0 0">
+            <mj-text font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="16px" line-height="22px" color="#36332B">
+               <b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 12px; line-height: 14px; color: #36332B; text-transform: uppercase;">
+                  Shipping Method
+               </b>
+               <br>
+               <br>
+               {{ order.shipping_method_name }}
+               <br>
+               <br>
+               <b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 12px; line-height: 14px; color: #36332B; text-transform: uppercase;">
+                  Tracking Information
+               </b>
+               <br>
+               {% if fulfillment.tracking_number %}
+                  {% if fulfillment.is_tracking_number_url %}
+                     <br>
+                      <a class="footer-link" style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 16px; line-height: 22px; text-align: center; color: #36332B; text-decoration:underline;" target="_blank" href="{{ tracking_number }}">
+                        <b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 16px; line-height: 22px; text-align: center; color: #36332B; text-decoration:underline;">
+                          Track Package
+                        </b>
+                      </a>
+                  {% endif %}
+               {% endif %}
+            </mj-text>
+         </mj-column>
+      </mj-section>
+
+      <mj-section padding="0" background-color="#ffffff">
+         <mj-column padding="0">
+            <mj-spacer height="10px" padding="0" />
+         </mj-column>
+      </mj-section>
+
+      <mj-section padding="0">
+         <mj-column padding="0 16px 0 0">
+            <mj-text align="center" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="16px" line-height="22px" color="#36332B">
+               Tracking may take up to 24 hours to update. You will receive additional confirmation emails if your entire order has not been fulfilled.
+            </mj-text>
+         </mj-column>
+      </mj-section>
+
+      <mj-include path="./shared/footer.mjml" />
+   </mj-body>
 </mjml>

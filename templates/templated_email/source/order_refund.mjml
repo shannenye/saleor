@@ -2,23 +2,48 @@
   <mj-head>
     <mj-include path="./shared/styles.mjml" />
   </mj-head>
+  <mj-preview>A refund has been processed</mj-preview>
   <mj-body>
     <mj-raw>
       {% load i18n %}
     </mj-raw>
+
     <mj-include path="./shared/header.mjml" />
-    <mj-section>
-      <mj-column>
-        <mj-text font-size="16px">
-          {% trans "Hi!" context "Standard e-mail greeting" %}
+
+    <mj-section padding="0" background-color="#ffffff">
+      <mj-column padding="0">
+        <mj-text align="center" padding="0 10px" font-family="'kaneda-gothic', 'copperplate', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="44px" color="#36332B" text-transform="uppercase">
+          <h1 style="font-family: 'kaneda-gothic', 'copperplate', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal; font-size: 44px; text-align: center; color: #36332B; text-transform: uppercase;">
+            A refund has been processed
+          </h1>
         </mj-text>
-        <mj-text>
+
+        <mj-text align="center" padding="0 10px" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="16px" line-height="24px" color="#36332B">
           {% blocktrans trimmed context "Order refund e-mail text" %}
-            A payment of {{ amount }} {{ currency }} has been refunded for your order.
+            A refund in the amount of {{ amount }} {{ currency }} has been sent to the credit card that was used at the time of payment for this order. Please allow 7-10 business days for the refunded amount to be processed in your account.
           {% endblocktrans %}
         </mj-text>
+
+        <mj-spacer height="20px" padding="0" />
+
       </mj-column>
     </mj-section>
+
+    <mj-include path="./shared/small-divider.mjml" />
+
+      <mj-section padding="0" background-color="#ffffff">
+         <mj-column padding="0">
+            <mj-spacer height="20px" padding="0" />
+            <mj-text align="center" padding="0 10px">
+               <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal;"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal;">Order Date</b>: {{ order.created }}</span> <span class="mobile-display-none" style="width:20px; height:15px; display: inline-block;">&nbsp;</span>
+               <br class="mobile-display-block" style="display: none;">
+               <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal;"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal;">Order No</b>: {{ order.pk }}</span>
+            </mj-text>
+            <mj-spacer height="20px" padding="0" />
+         </mj-column>
+      </mj-section>
+
     <mj-include path="./shared/footer.mjml" />
+
   </mj-body>
 </mjml>
