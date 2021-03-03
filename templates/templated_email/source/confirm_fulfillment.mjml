@@ -1,7 +1,7 @@
 <mjml>
    <mj-head>
       <mj-include path="./shared/styles.mjml" />
-      <mj-preview>Track your package.</mj-preview>
+      <mj-preview>You items have been fulfilled</mj-preview>
    </mj-head>
    <mj-body>
       <mj-raw>
@@ -15,7 +15,7 @@
          <mj-column padding="0">
             <mj-text align="center" padding="0 10px" font-family="'kaneda-gothic', 'copperplate', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="44px" color="#36332B" text-transform="uppercase">
                <h1 style="font-family: 'kaneda-gothic', 'copperplate', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal; font-size: 44px; text-align: center; color: #36332B; text-transform: uppercase;">
-                  Your Items Have Shipped
+                  Your Items Have Been Fulfilled
                </h1>
             </mj-text>
 
