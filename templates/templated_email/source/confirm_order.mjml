@@ -1,18 +1,6 @@
 <mjml>
    <mj-head>
       <mj-include path="./shared/styles.mjml" />
-
-      {% for key,value in order.private_metadata.items %}
-         {% if key == "ageVerified" %}
-            {% if value == "true" %}
-               <mj-preview>Thank you for your order.</mj-preview>
-            {% else %}
-               <mj-preview>Please verify your age.</mj-preview>
-            {% endif %}
-         {% endif %}
-      {% empty %}
-            <mj-preview>Please verify your age.</mj-preview>
-      {% endfor %}
    </mj-head>
    <mj-body>
       <mj-raw>
@@ -80,7 +68,7 @@
                </mj-raw>
                   <mj-section padding="0" background-color="#ffffff">
                      <mj-column padding="0">
-                        <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="{{ order_details_url }}">
+                        <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="https://{{ domain }}/checkout/confirmation/{{ order.token }}">
                            Check Order Status
                         </mj-button>
                      </mj-column>
@@ -90,7 +78,7 @@
                </mj-raw>
                   <mj-section padding="0" background-color="#ffffff">
                      <mj-column padding="0">
-                        <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="{{ order_details_url }}">
+                        <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="https://{{ domain }}/checkout/confirmation/{{ order.token }}">
                            Verify Your Age
                         </mj-button>
                      </mj-column>
@@ -102,7 +90,7 @@
          </mj-raw>
             <mj-section padding="0" background-color="#ffffff">
                <mj-column padding="0">
-                  <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="{{ order_details_url }}">
+                  <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="https://{{ domain }}/checkout/confirmation/{{ order.token }}">
                      Verify Your Age
                   </mj-button>
                </mj-column>
