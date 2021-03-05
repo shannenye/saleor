@@ -102,10 +102,6 @@
       </head>
       <body>
         
-    <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
-      Please verify your age.
-    </div>
-  
         
       <div style>
         {% load i18n %}
@@ -619,7 +615,7 @@
       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:270px;line-height:100%;">
         <tr>
           <td align="center" bgcolor="#36332B" role="presentation" style="padding: 5px; border: none; border-radius: 0; cursor: auto; font-style: normal; height: 60px; mso-padding-alt: 10px 25px; background: #36332B;" valign="middle" height="60">
-            <a href="{{ order_details_url }}" style="display:inline-block;width:220px;background:#36332B;color:#ffffff;font-family:'brandon-grotesque', Helvetica, Arial, sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:120%;margin:0;text-decoration:none;text-transform:uppercase;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" target="_blank">
+            <a href="https://{{ domain }}/checkout/confirmation/{{ order.token }}" style="display:inline-block;width:220px;background:#36332B;color:#ffffff;font-family:'brandon-grotesque', Helvetica, Arial, sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:120%;margin:0;text-decoration:none;text-transform:uppercase;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" target="_blank">
               Check Order Status
             </a>
           </td>
@@ -701,7 +697,7 @@
       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:270px;line-height:100%;">
         <tr>
           <td align="center" bgcolor="#36332B" role="presentation" style="padding: 5px; border: none; border-radius: 0; cursor: auto; font-style: normal; height: 60px; mso-padding-alt: 10px 25px; background: #36332B;" valign="middle" height="60">
-            <a href="{{ order_details_url }}" style="display:inline-block;width:220px;background:#36332B;color:#ffffff;font-family:'brandon-grotesque', Helvetica, Arial, sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:120%;margin:0;text-decoration:none;text-transform:uppercase;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" target="_blank">
+            <a href="https://{{ domain }}/checkout/confirmation/{{ order.token }}" style="display:inline-block;width:220px;background:#36332B;color:#ffffff;font-family:'brandon-grotesque', Helvetica, Arial, sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:120%;margin:0;text-decoration:none;text-transform:uppercase;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" target="_blank">
               Verify Your Age
             </a>
           </td>
@@ -785,7 +781,7 @@
       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:270px;line-height:100%;">
         <tr>
           <td align="center" bgcolor="#36332B" role="presentation" style="padding: 5px; border: none; border-radius: 0; cursor: auto; font-style: normal; height: 60px; mso-padding-alt: 10px 25px; background: #36332B;" valign="middle" height="60">
-            <a href="{{ order_details_url }}" style="display:inline-block;width:220px;background:#36332B;color:#ffffff;font-family:'brandon-grotesque', Helvetica, Arial, sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:120%;margin:0;text-decoration:none;text-transform:uppercase;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" target="_blank">
+            <a href="https://{{ domain }}/checkout/confirmation/{{ order.token }}" style="display:inline-block;width:220px;background:#36332B;color:#ffffff;font-family:'brandon-grotesque', Helvetica, Arial, sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:120%;margin:0;text-decoration:none;text-transform:uppercase;padding:10px 25px;mso-padding-alt:0px;border-radius:0;" target="_blank">
               Verify Your Age
             </a>
           </td>
@@ -1036,6 +1032,12 @@
                            <b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 16px; line-height: 22px;">
                               Qty
                            </b>: {{ line.quantity }}
+                        </span>
+                        <br>
+                     </td>
+                     <td class="mobile-full-width mobile-display-block mobile-text-left" width="100" align="right" valign="top" style="padding: 5px;">
+                        <span class="mobile-text-left" style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 16px; line-height: 22px; color: #36332B;">
+                           {% price line.get_total display_gross=order.display_gross_prices html=False %}
                         </span>
                         <br>
                      </td>
