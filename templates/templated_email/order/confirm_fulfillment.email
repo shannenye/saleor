@@ -1,9 +1,9 @@
 {% load i18n %}
 
 {% block subject %}
-  {% blocktrans trimmed with order=fulfillment.order context "Fulfillment confirmation email subject" %}
-    Your order {{ order }} has been fulfilled
-  {% endblocktrans %}
+    {% blocktrans trimmed with order=fulfillment.order context "Fulfillment confirmation email subject" %}
+        Items from Order {{ order }} have been fulfilled
+    {% endblocktrans %}
 {% endblock %}
 
 {% block plain %}
