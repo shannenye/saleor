@@ -61,12 +61,6 @@
                         </span>
                         <br>
                      </td>
-                     <td class="mobile-full-width mobile-display-block mobile-text-left" width="100" align="right" valign="top">
-                        <span class="mobile-text-left" style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 16px; line-height: 22px; color: #36332B;">
-                           {% price line.get_total display_gross=order.display_gross_prices html=False %}
-                        </span>
-                        <br>
-                     </td>
                   </tr>
                </table>
             </td>
