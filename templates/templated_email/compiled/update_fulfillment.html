@@ -1241,11 +1241,11 @@
                {% if fulfillment.tracking_number %}
                   {% if fulfillment.is_tracking_number_url %}
                      <br>
-                      <a class="footer-link" style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 16px; line-height: 22px; text-align: center; color: #36332B; text-decoration:underline;" target="_blank" href="{{ tracking_number }}">
+                     <a class="footer-link" style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 16px; line-height: 22px; text-align: center; color: #36332B; text-decoration:underline;" target="_blank" href="{{ fulfillment.tracking_number }}">
                         <b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: bold; font-style: normal; font-size: 16px; line-height: 22px; text-align: center; color: #36332B; text-decoration:underline;">
-                          Track Package
+                           Track Package
                         </b>
-                      </a>
+                     </a>
                   {% endif %}
                {% endif %}</div>
     
