@@ -18,7 +18,7 @@
             </mj-text>
 
             <mj-text align="center" padding="0 10px" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" font-size="16px" line-height="24px" color="#36332B">
-               We regret to inform you that your recent order has been cancelled. If you have any questions or concerns, please contact us at <a href="tel:1-833-373-7375" tabIndex="-1" class="" style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal; font-size: 16px; line-height: 24px; text-align: center; color: #36332B; text-decoration:underline; cursor: default;" target="_blank"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal; font-size: 16px; line-height: 24px; text-align: center; color: #36332B; text-decoration:underline; cursor: default;">1-833-373-7375</b></a> and we will be happy to assist you.
+               We regret to inform you that your recent order has been cancelled. If you have any questions or concerns, please contact us at <a href="tel:1-833-373-7375" tabIndex="-1" class="" style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal; font-size: 16px; line-height: 24px; text-align: center; color: #36332B; text-decoration:underline; cursor: default;" target="_blank"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal; font-size: 16px; line-height: 24px; text-align: center; color: #36332B; text-decoration:underline; cursor: default;">1<span style="color: #36332B;">&#8209;</span>833<span style="color: #36332B;">&#8209;</span>373<span style="color: #36332B;">&#8209;</span>7375</b></a>.</b></a> and we will be happy to assist you.
             </mj-text>
 
             <mj-spacer height="20px" padding="0" />
@@ -34,8 +34,6 @@
             <mj-spacer height="20px" padding="0" />
 
             <mj-text align="center" padding="0 10px">
-               <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal;"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal;">Order Date</b>: {{ order.created }}</span> <span class="mobile-display-none" style="width:20px; height:15px; display: inline-block;">&nbsp;</span>
-               <br class="mobile-display-block" style="display: none;">
                <span style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal;"><b style="font-family: 'brandon-grotesque', Helvetica, Arial, sans-serif; font-weight: 700; font-style: normal;">Order No</b>: {{ order.pk }}</span>
             </mj-text>
 
@@ -46,7 +44,7 @@
 
       <mj-section padding="0" background-color="#ffffff">
          <mj-column padding="0">
-            <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="{{ order_details_url }}">
+            <mj-button width="270px" height="60px" border-radius="0" font-family="'brandon-grotesque', Helvetica, Arial, sans-serif" font-weight="400" font-style="normal" background-color="#36332B" color="#ffffff" font-size="12px" text-transform="uppercase" href="https://{{ domain }}/checkout/confirmation/{{ order.token }}">
                Check Order Status
             </mj-button>
          </mj-column>
